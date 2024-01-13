@@ -1,3 +1,88 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  height: 100vh;
+  width: 100vw;
+}
+
+header {
+  height: 500px;
+  /* background-image: './images/james-donaldson-beach.jpg'; */
+  background-color: rgb(96, 197, 204);
+}
+
+.site-nav {
+  background: black;
+  border: 1px solid black;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+}
+
+.search-availability {
+  border: 1px solid black;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  gap: 15%;
+}
+
+.search-btn {
+  margin-left: 20px;
+}
+
+.main-content-container {
+  padding: 50px;
+}
+
+.homepage-mock-content-container {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.homepage-mock-article img {
+  height: 300px;
+}
+
+.user-bookings-dashboard,
+.available-rooms-container {
+  padding: 20px;
+}
+
+.bookings-nav,
+.view-available-rooms {
+  padding: 20px 60px 20px 60px;
+}
+
+.bookings-nav,
+.bookings-nav-list,
+.view-available-rooms {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookings-nav-list {
+  gap: 40px;
+}
+
+li {
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+}
+
+footer {
+  border-top: 1px solid black;
+  height: 160px;
+}
+
+.hidden {
+  display: none;
 }
