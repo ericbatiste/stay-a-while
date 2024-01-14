@@ -40,7 +40,7 @@ describe('Search for available rooms', () => {
     expect(availableRooms).to.deep.equal([rooms[0], rooms[2], rooms[3], rooms[4]]);
   });
 
-  it('should fiercly appologize if no rooms are available for a selected date', () => {
+  it('should return an empty array if no rooms available', () => {
     const allRoomsBooked = [
       { id: 'book1', userID: 5, date: '2024/01/13', roomNumber: 1 },
       { id: 'book2', userID: 4, date: '2024/01/13', roomNumber: 2 },
@@ -50,9 +50,7 @@ describe('Search for available rooms', () => {
     ];
     const availableRooms = filterRoomsByDate('2024/01/13', allRoomsBooked, rooms);
 
-    expect(availableRooms).to.equal(
-      `Please accept our sincere apology. Unfortunately we have no rooms available for the date you have selected. If possible, try adjusting your search.`
-    );
+    expect(availableRooms).to.deep.equal([]);
   });
 });
 
@@ -160,7 +158,7 @@ describe('Calculate total cost of customer bookings', () => {
     ];
     const totalCost = calcTotalCost(userBookings, rooms);
 
-    expect(totalCost).to.equal(`Total spent: $2153.38.`);
+    expect(totalCost).to.equal(2153.38);
   });
 
   it('should calculate the total cost of a different set of bookings', () => {
@@ -171,6 +169,6 @@ describe('Calculate total cost of customer bookings', () => {
     ];
     const totalCost = calcTotalCost(userBookings, rooms);
 
-    expect(totalCost).to.equal(`Total spent: $1397.96.`);
+    expect(totalCost).to.equal(1397.96);
   });
 });
