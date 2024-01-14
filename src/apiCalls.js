@@ -12,42 +12,32 @@ const dataUrls = [
 ];
 
 export const getAllData = () => {
-  Promise.all(dataUrls.map(url => {
+ return Promise.all(dataUrls.map(url => 
     fetch(url).then(response => {
       if (!response.ok) {
         throw new Error('Try harder you fool!')
       }
       return response.json();
     })
-    .then(data => {
-      // customers = data.customers;
-      // rooms = data.rooms;
-      // bookings = data.bookings;
-    })
-    .catch(error => {
-      console.error(error)
-    })
-  }))
+    .then(data => console.log(data))
+    .catch(error => console.error(error))
+  ))
 }
 
 export const getUser = (id) => {
-  fetch(`http://localhost:3001/api/v1/customers/${id}`)
+  fetch(`${dataUrls[0]}/${id}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Try harder you fool!')
       }
       return response.json();
     })
-    .then(data => {
-      console.log(data)
-    })
-    .catch(error => {
-      console.error(error)
-    })
+    .then(data => console.log(data))
+    .catch(error => console.error(error))
 }
 
 export const postBooking = () => {  
-  fetch('http://localhost:3001/api/v1/bookings', {
+  fetch(`${dataUrls[2]}`, {
     method: 'POST',
     body: JSON.stringify(someDataToSend),
     headers: {
@@ -65,7 +55,7 @@ export const postBooking = () => {
 }
 
 export const deleteBooking = (id) => {  
-  fetch(`http://localhost:3001/api/v1/bookings/${id}`, {
+  fetch(`${dataUrls[2]}/${id}`, {
     method: 'POST',
     body: JSON.stringify(someDataToSend),
     headers: {
