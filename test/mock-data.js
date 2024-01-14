@@ -1,33 +1,33 @@
 export const bookings = [
   {
     id: 'book1',
-    userID: 9,
-    date: '2022/04/22',
-    roomNumber: 15
+    userID: 5,
+    date: '2024/01/15',
+    roomNumber: 1
   },
   {
     id: 'book2',
-    userID: 43,
-    date: '2022/01/24',
-    roomNumber: 24
+    userID: 4,
+    date: '2024/01/12',
+    roomNumber: 2
   },
   {
     id: 'book3',
-    userID: 13,
-    date: '2022/01/10',
-    roomNumber: 12
+    userID: 3,
+    date: '2024/01/13',
+    roomNumber: 3
   },
   {
     id: 'book4',
-    userID: 20,
-    date: '2022/02/16',
-    roomNumber: 7
+    userID: 2,
+    date: '2024/01/13',
+    roomNumber: 4
   },
   {
     id: 'book5',
     userID: 1,
-    date: '2022/02/05',
-    roomNumber: 12
+    date: '2024/01/14',
+    roomNumber: 5
   }
 ];
 
