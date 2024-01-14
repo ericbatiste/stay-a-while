@@ -3,17 +3,13 @@ export const setCurrentUser = (customers, id) => {
 }
 
 export const filterRoomsByDate = (selectDate, bookings, rooms) => {
-  const searchResult = rooms.reduce((availRooms, room) => {
+  return rooms.reduce((availRooms, room) => {
     const match = bookings.find(({ date, roomNumber }) => {
       return selectDate !== date && room.number === roomNumber
     })
     if (match) availRooms.push(room);
     return availRooms;
   }, [])
-  if (searchResult.length === 0) {
-    return `Please accept our sincere apology. Unfortunately we have no rooms available for the date you have selected. If possible, try adjusting your search.`
-  }
-  return searchResult;
 }
 
 export const filterRoomsByType = (roomType, availableRooms) => {
@@ -21,7 +17,7 @@ export const filterRoomsByType = (roomType, availableRooms) => {
 }
 
 export const userSelectRoom = (rooms, targetId) => {
-  return rooms.find(room => room.number === Number(targetId));
+  return rooms.find(({number}) => number === Number(targetId));
 }
 
 export const createNewBooking = (user, date, selectedRoom) => {
@@ -33,15 +29,13 @@ export const createNewBooking = (user, date, selectedRoom) => {
 }
 
 export const compileUserBookings = (user, bookings) => {
-  const result = bookings.filter(booking => user.id === booking.userID)
-  return result;
+  return bookings.filter(({userID}) => user.id === userID)
 }
 
 export const calcTotalCost = (userBookings, rooms) => {
-  const result = userBookings.reduce((totalCost, booking) => {
-    const match = rooms.find(room => room.number === booking.roomNumber);
+  return userBookings.reduce((totalCost, {roomNumber}) => {
+    const match = rooms.find(({number}) => number === roomNumber);
     if (match) totalCost += match.costPerNight
     return totalCost
   }, 0);
-  return `Total spent: $${result}.`
 }
