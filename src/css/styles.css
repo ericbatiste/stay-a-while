@@ -84,8 +84,6 @@ footer {
 }
 
 
-
-
 /* MODAL STYLES */
 
 .modal {
@@ -97,8 +95,9 @@ footer {
   padding: 1.3rem;
   min-height: 250px;
   position: absolute;
-  top: 25%;
-  left: 33%;
+  top: 20%;
+  left: 50%;
+  margin-left: -225px;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 15px;

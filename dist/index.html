@@ -14,40 +14,30 @@
     </div>
     <!-- <img src="./images/turing-logo.png" alt=""> -->
   </header>
+  
   <section class="modal hidden" id="loginModal">
     <div class="login-header">
-      <p class="login-header-text">User Login</p>
+      <h2 class="login-header-text">User Login</h2>
       <button class="close-modal-btn">x</button>
     </div>
-    <div class="login-inputs">
+    <form class="login-inputs">
       <input type="text" id="username" placeholder="username" autocomplete="off"/>
       <input type="text" id="password" placeholder="password" autocomplete="off"/>
-      <button class="submit-btn">Submit</button>
-    </div>
+      <button class="submit-btn" id="submitLoginBtn">Submit</button>
+    </form>
   </section>
   <div class="overlay hidden"></div>
+  
   <main>
     <search class="search-availability">
         <h2 class="search-heading">Come join us!</h2>
         <div class="select-dates-container">
-            <label for="selectYear">Choose</label>
-            <select name="year" id="selectYear">
-              <option value="">Year</option>
-            </select>
-
-            <label for="selectMonth">Choose</label>
-            <select name="month" id="selectMonth">
-              <option value="">Month</option>
-            </select>
-            
-            <label for="selectDay">Choose</label>
-            <select name="day" id="selectDay">
-              <option value="">Day</option>
-            </select>
-
+            <label for="start">Select date</label>
+            <input type="date" id="selectDate" min="2015-01-01" max="2025-12-31">
             <button class="search-btn">Search Rooms</button>
           </div>
     </search>
+    
     <section class="main-content-container">
       <div class="homepage-mock-content-container hidden">
         <article class="homepage-mock-article" id="mock-article-1">
@@ -55,12 +45,14 @@
           <h3>Mock Article Headline</h3>
           <p>Some text here about something that isn't real...</p>
         </article>
+        
         <article class="homepage-mock-article" id="mock-article-2">
           <img src="./images/turing-logo.png" alt="">
           <h3>Mock Article Headline</h3>
           <p>Some text here about something that isn't real...</p>
         </article>
       </div>
+      
       <div class="user-logged-in-container">
         <article class="user-bookings-dashboard">
           <nav class="bookings-nav">
@@ -86,6 +78,7 @@
             <li>Booking 2</li>
           </ul>
         </article>
+        
         <article class="available-rooms-container">
           <search class="view-available-rooms">
             <h2>Available Rooms</h2>

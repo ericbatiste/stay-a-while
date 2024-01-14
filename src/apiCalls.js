@@ -25,14 +25,14 @@ export const getAllData = () => {
 }
 
 export const getUser = (id) => {
-  fetch(`${dataUrls[0]}/${id}`)
+  return fetch(`${dataUrls[0]}/${id}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Try harder you fool!')
       }
       return response.json();
     })
-    .then(data => console.log(data))
+    .then(data => data)
     .catch(error => console.error(error))
 }
 
