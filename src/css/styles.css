@@ -41,7 +41,7 @@ header {
   padding: 50px;
 }
 
-.homepage-mock-content-container {
+.mock-content-container {
   display: flex;
   justify-content: space-around;
 
@@ -78,6 +78,11 @@ li {
   justify-content: space-around;
   border-bottom: 1px solid black;
   margin-bottom: 5px;
+}
+
+.total-cost-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
 footer {

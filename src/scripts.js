@@ -1,8 +1,14 @@
 import './images/turing-logo.png';
 import './css/styles.css';
-import { filterRoomType, renderLoginFailed, renderUserBookings, selectDate } from './domUpdates.js';
-
 import { getAllData, getUser } from './apiCalls.js';
+import { 
+  filterRoomType,
+  renderAvailRooms,
+  renderLoginFailed, 
+  renderTotalCost, 
+  renderUserBookings, 
+  selectDate 
+} from './domUpdates.js';
 
 import {
   calcTotalCost,
@@ -44,14 +50,17 @@ function userLoggedIn(user) {
         }
       });
     });
+    renderTotalCost(calcTotalCost(userBookings, data[1].rooms))
   });
 }
 
 function userRoomSearch() {
   let userDate = selectDate.value.split('-').join('/');
-  return getAllData().then(data => {
+  getAllData().then(data => {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
-    return availableRooms;
+    availableRooms.forEach(room => {
+      renderAvailRooms(userDate, room);
+    })
   });
 }
 
