@@ -1,15 +1,14 @@
 import './images/turing-logo.png';
 import './css/styles.css';
-import { getAllData, getUser } from './apiCalls.js';
-import { 
+import { getAllData, getUser, postBooking } from './apiCalls.js';
+import {
   filterRoomType,
   renderAvailRooms,
-  renderLoginFailed, 
-  renderTotalCost, 
-  renderUserBookings, 
-  selectDate 
+  renderLoginFailed,
+  renderTotalCost,
+  renderUserBookings,
+  selectDate
 } from './domUpdates.js';
-
 import {
   calcTotalCost,
   compileUserBookings,
@@ -20,6 +19,9 @@ import {
   userSelectRoom
 } from './users.js';
 
+let currentUser;
+let userDate;
+
 function verifyUserCreds(e, username, password) {
   e.preventDefault();
   let userNum = Number(username.slice(8));
@@ -27,6 +29,7 @@ function verifyUserCreds(e, username, password) {
   if (username.slice(0, 8) === 'customer' && registeredNum && password === 'overlook2021') {
     getUser(userNum).then(user => {
       userLoggedIn(user);
+      currentUser = user
     });
   } else {
     renderLoginFailed();
@@ -50,12 +53,12 @@ function userLoggedIn(user) {
         }
       });
     });
-    renderTotalCost(calcTotalCost(userBookings, data[1].rooms))
+    renderTotalCost(calcTotalCost(userBookings, data[1].rooms));
   });
 }
 
 function userRoomSearch() {
-  let userDate = selectDate.value.split('-').join('/');
+  userDate = selectDate.value.split('-').join('/');
   getAllData().then(data => {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
     availableRooms.forEach(room => {
@@ -65,14 +68,21 @@ function userRoomSearch() {
 }
 
 function userRoomFilter() {
-  let userDate = selectDate.value.split('-').join('/');
   getAllData().then(data => {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
     const filtered = filterRoomsByType(filterRoomType.value, availableRooms);
     filtered.forEach(room => {
       renderAvailRooms(userDate, room);
-    })
+    });
   });
 }
 
-export { verifyUserCreds, userRoomSearch, userRoomFilter };
+function userNewBooking(e) {
+  const roomNum = Number(e.target.id.slice(3))
+  getAllData().then(data => {
+    const selectedRoom = userSelectRoom(data[1].rooms, roomNum)
+    postBooking(createNewBooking(currentUser, userDate, selectedRoom));
+  })
+}
+
+export { verifyUserCreds, userRoomSearch, userRoomFilter, userNewBooking };

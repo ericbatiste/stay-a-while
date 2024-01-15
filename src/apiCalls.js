@@ -38,10 +38,10 @@ export const getUser = (id) => {
     .catch(error => console.error(error))
 }
 
-export const postBooking = () => {  
+export const postBooking = (bookingInfo) => {  
   fetch(`${dataUrls[2]}`, {
     method: 'POST',
-    body: JSON.stringify(someDataToSend),
+    body: JSON.stringify(bookingInfo),
     headers: {
       'Content-Type': 'application/json'
     }

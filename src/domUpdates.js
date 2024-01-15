@@ -1,6 +1,4 @@
-import { getUser, getAllData } from './apiCalls';
-import { userRoomSearch, userRoomFilter, verifyUserCreds } from './scripts';
-import { filterRoomsByDate } from './users';
+import { userRoomSearch, userRoomFilter, verifyUserCreds, userNewBooking } from './scripts';
 
 const loginModal = document.querySelector('#loginModal');
 const loginOverlay = document.querySelector('.overlay');
@@ -21,8 +19,9 @@ const userDashboard = document.querySelector('.user-bookings-dashboard')
 const availRoomsContainer = document.querySelector('.available-rooms-container');
 const availRoomsHeading = document.querySelector('#availRoomsHeading');
 const availRoomsList = document.querySelector('.available-rooms-list');
+const bookNowBtn = document.querySelector('#bookNowBtn');
 
-window.addEventListener('load', () => {});
+// window.addEventListener('load', () => {});
 loginBtn.addEventListener('click', showUserLogin);
 closeLoginModalBtn.addEventListener('click', closeUserLogin);
 submitLoginBtn.addEventListener('click', e => {
@@ -37,6 +36,9 @@ filterRoomType.addEventListener('change', () => {
   availRoomsList.innerHTML = '';
   userRoomFilter()
 });
+availRoomsList.addEventListener('click', (e) => {
+  userNewBooking(e)
+})
 
 function renderUserBookings(date, roomType, roomNumber, numBeds, bedSize, cost) {
   closeUserLogin();
@@ -56,13 +58,14 @@ function renderTotalCost(cost) {
 function renderAvailRooms(date, room) {
   const { number, roomType, bedSize, numBeds, costPerNight } = room;
   searchRoomsView();
-  availRoomsHeading.innerText = `Avaliable rooms for ${date}`;
+  availRoomsHeading.innerText = `Avaliable rooms, ${date}`;
   availRoomsList.innerHTML += `
     <li>
       <p id="availRoomType">${roomType}</p>
       <p id="availRoomNum">${number}</p>
       <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
       <p id="availRoomCost">$${costPerNight} / night</p>
+      <button id="btn${number}">Book now</button>
     </li>`;
 }
 
