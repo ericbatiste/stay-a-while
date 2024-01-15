@@ -1,6 +1,6 @@
 import './images/turing-logo.png';
 import './css/styles.css';
-import { filterRoomType, renderUserBookings, selectDate } from './domUpdates.js';
+import { filterRoomType, renderLoginFailed, renderUserBookings, selectDate } from './domUpdates.js';
 
 import { getAllData, getUser } from './apiCalls.js';
 
@@ -23,7 +23,7 @@ function verifyUserCreds(e, username, password) {
       userLoggedIn(user);
     });
   } else {
-    return 'nope';
+    renderLoginFailed();
   }
 }
 

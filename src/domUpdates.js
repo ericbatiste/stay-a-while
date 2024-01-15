@@ -13,6 +13,8 @@ const selectDate = document.querySelector('#selectDate');
 const searchRoomsBtn = document.querySelector('#searchRoomsBtn');
 const filterRoomType = document.querySelector('#selectRoomType');
 const userBookingsHist = document.querySelector('.booking-history');
+const loginFailed = document.querySelector('.login-failed-text');
+const resetBtn = document.querySelector('.reset-btn')
 
 window.addEventListener('load', () => {
 })
@@ -29,7 +31,31 @@ filterRoomType.addEventListener('change', () => {
   userRoomFilter();
 })
 
+
+function renderUserBookings(date, roomType, roomNumber, numBeds, bedSize, cost) {
+  closeUserLogin();
+  userBookingsHist.innerHTML += `
+  <li class="booking-details">
+  <p id="bookingDate">${date}</p>
+  <p id="bookingRoomType">${roomType}
+  <span id="bookingRoomNum"> number ${roomNumber}</span>
+  </p>
+  <p id="bookingBeds">Beds:
+  <span id="bookingBedNum">${numBeds}</span>${bedSize}
+  </p>
+  <p id="bookingCost">$${cost} per night</p>
+  </li>`;
+  
+}
+
+function renderLoginFailed() {
+  loginFailed.classList.remove('hidden');
+  resetBtn.classList.remove('hidden');
+}
+
 function showUserLogin() {
+  loginFailed.classList.add('hidden');
+  resetBtn.classList.add('hidden');
   loginModal.classList.remove('hidden');
   loginOverlay.classList.remove('hidden');
 }
@@ -39,24 +65,9 @@ function closeUserLogin() {
   loginOverlay.classList.add('hidden');
 }
 
-function renderUserBookings(date, roomType, roomNumber, numBeds, bedSize, cost) {
-  closeUserLogin();
-  userBookingsHist.innerHTML += `
-    <li class="booking-details">
-    <p id="bookingDate">${date}</p>
-    <p id="bookingRoomType">${roomType}
-    <span id="bookingRoomNum"> number ${roomNumber}</span>
-    </p>
-    <p id="bookingBeds">Beds:
-    <span id="bookingBedNum">${numBeds}</span>${bedSize}
-    </p>
-    <p id="bookingCost">$${cost} per night</p>
-    </li>`;
-    
-}
-
 export {
   filterRoomType,
   renderUserBookings,
+  renderLoginFailed,
   selectDate
 }
