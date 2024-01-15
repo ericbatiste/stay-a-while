@@ -26,7 +26,9 @@ export const createNewBooking = (user, date, selectedRoom) => {
 }
 
 export const compileUserBookings = (user, bookings) => {
-  return bookings.filter(({userID}) => user.id === userID)
+  const result = bookings.filter(({userID}) => user.id === userID)
+  console.log(result);
+  return result;
 }
 
 export const calcTotalCost = (userBookings, rooms) => {

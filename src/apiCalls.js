@@ -21,9 +21,7 @@ export const getAllData = () => {
       }
       return response.json();
     })
-    .then(data => {
-      return data
-    })
+    .then(data => data)
     .catch(error => console.error(error))
   ))
 }
@@ -36,10 +34,7 @@ export const getUser = (id) => {
       }
       return response.json();
     })
-    .then(user => {
-      console.log(user)
-      return user
-    })
+    .then(user => user)
     .catch(error => console.error(error))
 }
 

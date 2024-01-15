@@ -74,6 +74,8 @@ header {
 }
 
 li {
+  display: flex;
+  justify-content: space-around;
   border-bottom: 1px solid black;
   margin-bottom: 5px;
 }
