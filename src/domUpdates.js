@@ -31,10 +31,11 @@ submitLoginBtn.addEventListener('click', e => {
   verifyUserCreds(e, username.value, password.value);
 });
 searchRoomsBtn.addEventListener('click', () => {
-  userRoomSearch();
+  userRoomSearch()
 });
 filterRoomType.addEventListener('change', () => {
-  userRoomFilter();
+  availRoomsList.innerHTML = '';
+  userRoomFilter()
 });
 
 function renderUserBookings(date, roomType, roomNumber, numBeds, bedSize, cost) {
@@ -54,9 +55,7 @@ function renderTotalCost(cost) {
 
 function renderAvailRooms(date, room) {
   const { number, roomType, bedSize, numBeds, costPerNight } = room;
-  mockContentContainer.classList.add('hidden');
-  userDashboard.classList.add('hidden');
-  availRoomsContainer.classList.remove('hidden');
+  searchRoomsView();
   availRoomsHeading.innerText = `Avaliable rooms for ${date}`;
   availRoomsList.innerHTML += `
     <li>
@@ -88,6 +87,12 @@ function userLoggedInView() {
   userDashboard.classList.remove('hidden');
   mockContentContainer.classList.add('hidden');
   availRoomsContainer.classList.add('hidden');
+}
+
+function searchRoomsView() {
+  mockContentContainer.classList.add('hidden');
+  userDashboard.classList.add('hidden');
+  availRoomsContainer.classList.remove('hidden');
 }
 
 export { 

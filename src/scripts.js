@@ -60,13 +60,18 @@ function userRoomSearch() {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
     availableRooms.forEach(room => {
       renderAvailRooms(userDate, room);
-    })
+    });
   });
 }
 
 function userRoomFilter() {
-  return getAllData().then(data => {
-    console.log(filterRoomsByType(filterRoomType.value, data[1].rooms));
+  let userDate = selectDate.value.split('-').join('/');
+  getAllData().then(data => {
+    const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
+    const filtered = filterRoomsByType(filterRoomType.value, availableRooms);
+    filtered.forEach(room => {
+      renderAvailRooms(userDate, room);
+    })
   });
 }
 
