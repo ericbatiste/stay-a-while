@@ -5,6 +5,8 @@
 // POST New booking 'http://localhost:3001/api/v1/bookings'
 // DELETE booking 'http://localhost:3001/api/v1/bookings/<id>'
 
+import { setCurrentUser } from "./users";
+
 const dataUrls = [
   'http://localhost:3001/api/v1/customers',
   'http://localhost:3001/api/v1/rooms',
@@ -19,7 +21,9 @@ export const getAllData = () => {
       }
       return response.json();
     })
-    .then(data => console.log(data))
+    .then(data => {
+      return data
+    })
     .catch(error => console.error(error))
   ))
 }
@@ -32,7 +36,10 @@ export const getUser = (id) => {
       }
       return response.json();
     })
-    .then(data => data)
+    .then(user => {
+      console.log(user)
+      return user
+    })
     .catch(error => console.error(error))
 }
 

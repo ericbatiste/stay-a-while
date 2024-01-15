@@ -3,14 +3,11 @@ export const setCurrentUser = (customers, id) => {
 }
 
 export const filterRoomsByDate = (selectDate, bookings, rooms) => {
-  return rooms.reduce((availRooms, room) => {
-    const match = bookings.find(({ date, roomNumber }) => {
-      return selectDate !== date && room.number === roomNumber
-    })
-    if (match) availRooms.push(room);
-    return availRooms;
-  }, [])
-}
+    const bookedRoomNums = bookings
+      .filter(({ date }) => date === selectDate)
+      .map(({ roomNumber }) => roomNumber);
+    return rooms.filter(({ number }) => !bookedRoomNums.includes(number));
+  };
 
 export const filterRoomsByType = (roomType, availableRooms) => {
   return availableRooms.filter(room => room.roomType === roomType)

@@ -1,6 +1,6 @@
 import './images/turing-logo.png';
 import './css/styles.css';
-import './domUpdates.js';
+import { filterRoomType, selectDate } from './domUpdates.js';
 
 import { getAllData, getUser } from './apiCalls.js';
 
@@ -25,13 +25,28 @@ function verifyUserCreds(e, username, password) {
     registeredNum &&
     password === 'overlook2021'
   ) {
-    getUser(userNum).then(user => {
-      return user
-    })
+    return userNum;
   } else {
     return 'nope';
   }
 }
 
+function userRoomSearch() {
+  let userDate = selectDate.value.split('-').join('/');
+  return getAllData().then(data => {
+    const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
+    return availableRooms;
+  })
+}
 
-export { verifyUserCreds };
+function userRoomFilter() {
+  return getAllData().then(data => {
+    console.log( filterRoomsByType(filterRoomType.value, data[1].rooms) );
+  })
+}
+
+export { 
+  verifyUserCreds, 
+  userRoomSearch, 
+  userRoomFilter 
+};
