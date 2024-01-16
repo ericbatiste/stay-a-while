@@ -1,9 +1,4 @@
-import { 
-  userRoomSearch, 
-  userRoomFilter, 
-  verifyUserCreds, 
-  userNewBooking 
-} from './scripts';
+import { userRoomSearch, userRoomFilter, verifyUserCreds, userNewBooking } from './scripts';
 
 const loginModal = document.querySelector('#loginModal');
 const loginOverlay = document.querySelector('.overlay');
@@ -14,8 +9,13 @@ const password = document.querySelector('#password');
 const submitLoginBtn = document.querySelector('#submitLoginBtn');
 const selectDate = document.querySelector('#selectDate');
 const searchRoomsBtn = document.querySelector('#searchRoomsBtn');
+const searchHeading = document.querySelector('.search-heading');
+const selectDatePrompt = document.querySelector('.select-date-prompt');
 const filterRoomType = document.querySelector('#selectRoomType');
 const userBookingsHist = document.querySelector('.booking-history');
+const userBookingsUpcmg = document.querySelector('.booking-upcoming');
+const viewHistBtn = document.querySelector('#viewHist');
+const viewUpcmgBtn = document.querySelector('#viewUpcmg');
 const loginFailed = document.querySelector('.login-failed-text');
 const resetBtn = document.querySelector('.reset-btn');
 const totalCost = document.querySelector('.total-cost');
@@ -24,7 +24,7 @@ const userDashboard = document.querySelector('.user-bookings-dashboard');
 const availRoomsContainer = document.querySelector('.available-rooms-container');
 const availRoomsHeading = document.querySelector('#availRoomsHeading');
 const availRoomsList = document.querySelector('.available-rooms-list');
-const bookNowBtn = document.querySelector('#bookNowBtn');
+// const bookNowBtn = document.querySelector('#bookNowBtn');
 const loginPrompt = document.querySelector('.login-prompt');
 const bookingSuccess = document.querySelector('.booking-success');
 const successMsg = document.querySelector('.success-msg');
@@ -32,33 +32,31 @@ const returnToDashBtn = document.querySelector('#returnToDash');
 
 loginBtn.addEventListener('click', showUserLogin);
 closeLoginModalBtn.addEventListener('click', closeUserLogin);
-searchRoomsBtn.addEventListener('click', userRoomSearch);
-submitLoginBtn.addEventListener('click', e => {
-  userLoggedInView();
-  userBookingsHist.innerHTML = '';
-  verifyUserCreds(e, username.value, password.value);
+availRoomsList.addEventListener('click', e => {
+  userNewBooking(e);
+});
+returnToDashBtn.addEventListener('click', showUserDashboard);
+viewHistBtn.addEventListener('click', showUserHistory);
+viewUpcmgBtn.addEventListener('click', showUserUpcoming);
+submitLoginBtn.addEventListener('click', showUserDashboard);
+searchRoomsBtn.addEventListener('click', () => {
+  availRoomsList.innerHTML = '';
+  userRoomSearch();
 });
 filterRoomType.addEventListener('change', () => {
   availRoomsList.innerHTML = '';
   userRoomFilter();
 });
-availRoomsList.addEventListener('click', e => {
-  userNewBooking(e);
-});
-returnToDashBtn.addEventListener('click', e => {
-  userLoggedInView();
-  userBookingsHist.innerHTML = '';
-  verifyUserCreds(e, username.value, password.value);
-});
 
-function renderUserBookings(date, roomType, roomNumber, numBeds, bedSize, cost) {
+function renderUserBookings(date, room, element) {
+  const { number, roomType, bedSize, numBeds, costPerNight } = room;
   closeUserLogin();
-  userBookingsHist.innerHTML += `
+  element.innerHTML += `
     <li class="booking-details">
       <p id="bookingDate">${date}</p>
-      <p id="bookingRoomType">${roomType}<span id="bookingRoomNum"> number ${roomNumber}</span></p>
+      <p id="bookingRoomType">${roomType}<span id="bookingRoomNum"> number ${number}</span></p>
       <p id="bookingBeds">Beds: <span id="bookingBedNum">${numBeds} </span>${bedSize}</p>
-      <p id="bookingCost">$${cost} / night</p>
+      <p id="bookingCost">$${costPerNight} per night</p>
     </li>`;
 }
 
@@ -67,53 +65,22 @@ function renderTotalCost(cost) {
 }
 
 function renderAvailRooms(date, room) {
-  const { number, roomType, bedSize, numBeds, costPerNight } = room;
-  searchRoomsView();
-  availRoomsHeading.innerText = `Avaliable rooms, ${date}`;
-  availRoomsList.innerHTML += `
-    <li>
-      <p id="availRoomType">${roomType}</p>
-      <p id="availRoomNum">${number}</p>
-      <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
-      <p id="availRoomCost">$${costPerNight} / night</p>
-      <button id="btn${number}">Book now</button>
-    </li>`;
-}
-
-function renderLoginFailed() {
-  loginFailed.classList.remove('hidden');
-  resetBtn.classList.remove('hidden');
-}
-
-function showUserLogin() {
-  loginPrompt.classList.add('hidden');
-  loginFailed.classList.add('hidden');
-  resetBtn.classList.add('hidden');
-  loginModal.classList.remove('hidden');
-  loginOverlay.classList.remove('hidden');
-}
-
-function closeUserLogin() {
-  loginModal.classList.add('hidden');
-  loginOverlay.classList.add('hidden');
-}
-
-function userLoggedInView() {
-  userDashboard.classList.remove('hidden');
-  bookingSuccess.classList.add('hidden');
-  mockContentContainer.classList.add('hidden');
-  availRoomsContainer.classList.add('hidden');
-}
-
-function searchRoomsView() {
-  mockContentContainer.classList.add('hidden');
-  userDashboard.classList.add('hidden');
-  availRoomsContainer.classList.remove('hidden');
-}
-
-function promptUserLogin() {
-  showUserLogin();
-  loginPrompt.classList.remove('hidden');
+  if (!date) {
+    promptUserSearch();
+    setTimeout(() => promptUserSearch(), 1800);
+  } else {
+    const { number, roomType, bedSize, numBeds, costPerNight } = room;
+    searchRoomsView();
+    availRoomsHeading.innerText = `Avaliable rooms, ${date}`;
+    availRoomsList.innerHTML += `
+      <li id="${number}">
+        <p id="availRoomType">${roomType}</p>
+        <p id="availRoomNum">${number}</p>
+        <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
+        <p id="availRoomCost">$${costPerNight} / night</p>
+        <button id="${number}">Book now</button>
+      </li>`;
+  }
 }
 
 function renderBookingSuccess(date) {
@@ -121,11 +88,81 @@ function renderBookingSuccess(date) {
   bookingSuccessView();
 }
 
+function showUserDashboard(e) {
+  userLoggedInView();
+  clearBookingElement();
+  verifyUserCreds(e, username.value, password.value);
+}
+
+function renderLoginFailed() {
+  show(loginFailed);
+  show(resetBtn);
+}
+
+function promptUserLogin() {
+  showUserLogin();
+  show(loginPrompt);
+}
+
+function showUserLogin() {
+  hide(loginPrompt);
+  hide(loginFailed);
+  hide(resetBtn);
+  show(loginModal);
+  show(loginOverlay);
+}
+
+function closeUserLogin() {
+  hide(loginModal);
+  hide(loginOverlay);
+}
+
+function clearBookingElement() {
+  userBookingsHist.innerHTML = '';
+  userBookingsUpcmg.innerHTML = '';
+}
+
+function userLoggedInView() {
+  show(userDashboard);
+  hide(bookingSuccess);
+  hide(mockContentContainer);
+  hide(availRoomsContainer);
+}
+
+function promptUserSearch() {
+  searchHeading.classList.toggle('hidden');
+  selectDatePrompt.classList.toggle('hidden');
+}
+
+function searchRoomsView() {
+  hide(mockContentContainer);
+  hide(userDashboard);
+  show(availRoomsContainer);
+}
+
+function showUserHistory() {
+  show(userBookingsHist);
+  hide(userBookingsUpcmg);
+}
+
+function showUserUpcoming() {
+  hide(userBookingsHist);
+  show(userBookingsUpcmg);
+}
+
 function bookingSuccessView() {
-  userDashboard.classList.add('hidden');
-  mockContentContainer.classList.add('hidden');
-  availRoomsContainer.classList.add('hidden');
-  bookingSuccess.classList.remove('hidden');
+  hide(userDashboard);
+  hide(mockContentContainer);
+  hide(availRoomsContainer);
+  show(bookingSuccess);
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function hide(element) {
+  element.classList.add('hidden');
 }
 
 export {
@@ -136,5 +173,7 @@ export {
   renderUserBookings,
   renderLoginFailed,
   renderTotalCost,
-  selectDate
+  selectDate,
+  userBookingsHist,
+  userBookingsUpcmg
 };

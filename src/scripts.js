@@ -9,7 +9,9 @@ import {
   renderLoginFailed,
   renderTotalCost,
   renderUserBookings,
-  selectDate
+  selectDate,
+  userBookingsHist,
+  userBookingsUpcmg
 } from './domUpdates.js';
 import {
   calcTotalCost,
@@ -17,7 +19,6 @@ import {
   createNewBooking,
   filterRoomsByDate,
   filterRoomsByType,
-  setCurrentUser,
   userSelectRoom
 } from './users.js';
 
@@ -41,17 +42,13 @@ function verifyUserCreds(e, username, password) {
 function userLoggedIn(user) {
   getAllData().then(data => {
     const userBookings = compileUserBookings(user, data[2].bookings);
-    userBookings.forEach(booking => {
+    const sortedBookings = sortUserBookings(userBookings)
+    sortedBookings.forEach(booking => {
       data[1].rooms.forEach(room => {
         if (booking.roomNumber === room.number) {
-          renderUserBookings(
-            booking.date,
-            room.roomType,
-            room.number,
-            room.numBeds,
-            room.bedSize,
-            room.costPerNight
-          );
+          new Date(booking.date) < new Date() ? 
+          renderUserBookings(booking.date, room, userBookingsHist) :
+          renderUserBookings(booking.date, room, userBookingsUpcmg); 
         }
       });
     });
@@ -83,8 +80,8 @@ function userRoomFilter() {
 function userNewBooking(e) {
   if (!currentUser) {
     promptUserLogin();
-  } else { 
-    const roomNum = Number(e.target.id.slice(3))
+  } else {
+    const roomNum = e.target.id;
     getAllData().then(data => {
       const selectedRoom = userSelectRoom(data[1].rooms, roomNum)
       postBooking(createNewBooking(currentUser, userDate, selectedRoom));
@@ -92,6 +89,10 @@ function userNewBooking(e) {
     })
   }
 }
+
+function sortUserBookings(bookings) {
+  return bookings.sort((a, b) => new Date(a.date) - new Date(b.date));
+} 
 
 export { 
   verifyUserCreds, 

@@ -11,7 +11,7 @@ body {
 
 header {
   height: 500px;
-  /* background-image: './images/james-donaldson-beach.jpg'; */
+  background-image: '';
   background-color: rgb(96, 197, 204);
 }
 
@@ -21,7 +21,8 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 50px;
+  height: 70px;
+  padding: 0 2rem;
 }
 
 .search-availability {
@@ -58,15 +59,16 @@ header {
 
 .bookings-nav,
 .view-available-rooms {
-  padding: 20px 60px 20px 60px;
+  padding: 0px 60px 50px 60px;
 }
 
 .bookings-nav,
 .bookings-nav-list,
 .view-available-rooms {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  gap: 1rem;
 }
 
 .bookings-nav-list {
