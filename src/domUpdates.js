@@ -24,7 +24,7 @@ const userDashboard = document.querySelector('.user-bookings-dashboard');
 const availRoomsContainer = document.querySelector('.available-rooms-container');
 const availRoomsHeading = document.querySelector('#availRoomsHeading');
 const availRoomsList = document.querySelector('.available-rooms-list');
-const bookNowBtn = document.querySelector('#bookNowBtn');
+// const bookNowBtn = document.querySelector('#bookNowBtn');
 const loginPrompt = document.querySelector('.login-prompt');
 const bookingSuccess = document.querySelector('.booking-success');
 const successMsg = document.querySelector('.success-msg');
@@ -166,7 +166,6 @@ function hide(element) {
 }
 
 export {
-  bookNowBtn,
   filterRoomType,
   promptUserLogin,
   renderAvailRooms,

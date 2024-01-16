@@ -22,7 +22,9 @@
       </div>
       <p class="login-prompt hidden">Please log in or create an account to continue.</p>
       <form class="login-inputs">
+        <label for="username">Enter Username</label>
         <input type="text" id="username" placeholder="username" autocomplete="off" />
+        <label for="password">Enter Password</label>
         <input type="text" id="password" placeholder="password" autocomplete="off" />
         <p class="login-failed-text hidden">*username or password is incorrect</p>
         <button class="reset-btn btn hidden">Reset password</button>
@@ -63,8 +65,8 @@
             <button id="returnToDash">Confirm Booking</button>
           </div>
           <article class="user-bookings-dashboard hidden">
+            <h2>Your Bookings</h2>
             <nav class="bookings-nav">
-              <h2>Your Bookings</h2>
               <ol class="bookings-nav-list">
                 <li class="booking-nav-btn">
                   <a id="viewHist" href="#">History</a>
@@ -98,11 +100,11 @@
           </article>
 
           <article class="available-rooms-container hidden">
+            <h2 id="availRoomsHeading">Available Rooms</h2>
             <search class="view-available-rooms">
-              <h2 id="availRoomsHeading">Available Rooms</h2>
-              <label for="selectRoomType"></label>
+              <label for="selectRoomType">Filter rooms:</label>
               <select name="roomType" id="selectRoomType">
-                <option value="">--Filter By Room Type--</option>
+                <option value="">--Room Type--</option>
                 <option value="single room">Single Room</option>
                 <option value="suite">Suite</option>
                 <option value="junior suite">Junior Suite</option>
