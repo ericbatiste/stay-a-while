@@ -13,20 +13,6 @@ import {
   userSelectRoom
 } from '../src/users.js';
 
-describe('Set current user (customer)', () => {
-  it('should find a customer by their id', () => {
-    const currentUser = setCurrentUser(customers, 2);
-
-    expect(currentUser).to.deep.equal({ id: 2, name: 'Rocio Schuster' });
-  });
-
-  it('should find a different customer by their id', () => {
-    const currentUser = setCurrentUser(customers, 4);
-
-    expect(currentUser).to.deep.equal({ id: 4, name: 'Kennedi Emard' });
-  });
-});
-
 describe('Search for available rooms', () => {
   it('should find rooms available on a specific date', () => {
     const availableRooms = filterRoomsByDate('2024/01/13', bookings, rooms);

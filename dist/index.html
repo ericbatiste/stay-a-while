@@ -1,112 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script defer src="bundle.js"></script>
-  <title>Stay A While</title>
-</head>
-<body>
-  <header>
-    <div class="site-nav">
-      <button class="login-btn">Login</button>
-    </div>
-    <!-- <img src="./images/turing-logo.png" alt=""> -->
-  </header>
-  
-  <section class="modal hidden" id="loginModal">
-    <div class="login-header">
-      <h2 class="login-header-text">User Login</h2>
-      <button class="close-modal-btn">x</button>
-    </div>
-    <form class="login-inputs">
-      <input type="text" id="username" placeholder="username" autocomplete="off"/>
-      <input type="text" id="password" placeholder="password" autocomplete="off"/>
-      <button class="submit-btn" id="submitLoginBtn">Submit</button>
-    </form>
-  </section>
-  <div class="overlay hidden"></div>
-  
-  <main>
-    <search class="search-availability">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="bundle.js"></script>
+    <title>Stay A While</title>
+  </head>
+  <body>
+    <header>
+      <div class="site-nav">
+        <button class="login-btn">Login</button>
+      </div>
+      <!-- <img src="./images/turing-logo.png" alt=""> -->
+    </header>
+
+    <section class="modal hidden" id="loginModal">
+      <div class="login-header">
+        <h2 class="login-header-text">User Login</h2>
+        <button class="close-modal-btn">x</button>
+      </div>
+      <p class="login-prompt hidden">Please log in or create an account to continue.</p>
+      <form class="login-inputs">
+        <input type="text" id="username" placeholder="username" autocomplete="off" />
+        <input type="text" id="password" placeholder="password" autocomplete="off" />
+        <p class="login-failed-text hidden">*username or password is incorrect</p>
+        <button class="reset-btn btn hidden">Reset password</button>
+        <button class="submit-btn btn" id="submitLoginBtn">Submit</button>
+      </form>
+    </section>
+    <div class="overlay hidden"></div>
+
+    <main>
+      <search class="search-availability">
         <h2 class="search-heading">Come join us!</h2>
         <div class="select-dates-container">
-            <label for="start">Select date</label>
-            <input type="date" id="selectDate" min="2015-01-01" max="2025-12-31">
-            <button class="search-btn">Search Rooms</button>
-          </div>
-    </search>
-    
-    <section class="main-content-container">
-      <div class="homepage-mock-content-container hidden">
-        <article class="homepage-mock-article" id="mock-article-1">
-          <img src="./images/turing-logo.png" alt="">
-          <h3>Mock Article Headline</h3>
-          <p>Some text here about something that isn't real...</p>
-        </article>
-        
-        <article class="homepage-mock-article" id="mock-article-2">
-          <img src="./images/turing-logo.png" alt="">
-          <h3>Mock Article Headline</h3>
-          <p>Some text here about something that isn't real...</p>
-        </article>
-      </div>
-      
-      <div class="user-logged-in-container">
-        <article class="user-bookings-dashboard">
-          <nav class="bookings-nav">
-            <h2>Your Bookings</h2>
-            <ol class="bookings-nav-list">
-              <li class="booking-nav-btn">
-                <a href="#">History</a>
-              </li>
-              <li class="booking-nav-btn">
-                <a href="#">Upcoming</a>
-              </li>
-            </ol>
-          </nav>
-          <ul class="booking-history">
-            <li>Booking 1</li>
-            <li>Booking 2</li>
-            <li>Booking 3</li>
-            <li>Booking 4</li>
-            <li>Booking 5</li>
-          </ul>
-          <ul class="booking-upcoming">
-            <li>Booking 1</li>
-            <li>Booking 2</li>
-          </ul>
-        </article>
-        
-        <article class="available-rooms-container">
-          <search class="view-available-rooms">
-            <h2>Available Rooms</h2>
-            <label for="selectRoomType"></label>
-            <select name="roomType" id="selectRoomType">
-              <option value="">--Filter By Room Type--</option>
-              <option value="single room">Single Room</option>
-              <option value="suite">Suite</option>
-              <option value="junior suite">Junior Suite</option>
-              <option value="residential suite">Residential Suite</option>
-            </select>
-          </search>
-          <ul class="available-rooms-list">
-            <li>Available Room 1</li>
-            <li>Available Room 2</li>
-            <li>Available Room 3</li>
-            <li>Available Room 4</li>
-            <li>Available Room 5</li>
-            <li>Available Room 6</li>
-            <li>Available Room 7</li>
-            <li>Available Room 8</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-  </main>
-  <footer>
+          <label for="start">Select date</label>
+          <input type="date" id="selectDate" min="2015-01-01" max="2025-12-31" />
+          <button class="search-btn" id="searchRoomsBtn">Search Rooms</button>
+        </div>
+      </search>
 
-  </footer>
-</body>
+      <section class="main-content-container">
+        <div class="mock-content-container">
+          <article class="homepage-mock-article" id="mock-article-1">
+            <img src="./images/turing-logo.png" alt="" />
+            <h3>Mock Article Headline</h3>
+            <p>Some text here about something that isn't real...</p>
+          </article>
+
+          <article class="homepage-mock-article" id="mock-article-2">
+            <img src="./images/turing-logo.png" alt="" />
+            <h3>Mock Article Headline</h3>
+            <p>Some text here about something that isn't real...</p>
+          </article>
+        </div>
+
+        <div class="user-logged-in-container">
+          <div class="booking-success hidden">
+            <p class="success-msg"></p>
+            <button id="returnToDash">Confirm Booking</button>
+          </div>
+          <article class="user-bookings-dashboard hidden">
+            <nav class="bookings-nav">
+              <h2>Your Bookings</h2>
+              <ol class="bookings-nav-list">
+                <li class="booking-nav-btn">
+                  <a href="#">History</a>
+                </li>
+                <li class="booking-nav-btn">
+                  <a href="#">Upcoming</a>
+                </li>
+              </ol>
+            </nav>
+            <ul class="booking-history">
+              <!-- <li class="booking-details">
+              <p id="bookingDate">2022/01/13</p>
+              <p id="bookingRoomType">Single Room
+                <span id="bookingRoomNum"> number 13</span>
+              </p>
+              <p id="bookingBeds">Beds:
+                <span id="bookingBedNum">1</span> king
+              </p>
+              <p id="bookingCost">$180.00 per night</p>
+            </li> -->
+            </ul>
+            <ul class="booking-upcoming">
+              <!-- <li>Booking 1</li>
+            <li>Booking 2</li> -->
+            </ul>
+            <div class="total-cost-container">
+              <p class="total-cost"></p>
+            </div>
+          </article>
+
+          <article class="available-rooms-container hidden">
+            <search class="view-available-rooms">
+              <h2 id="availRoomsHeading">Available Rooms</h2>
+              <label for="selectRoomType"></label>
+              <select name="roomType" id="selectRoomType">
+                <option value="">--Filter By Room Type--</option>
+                <option value="single room">Single Room</option>
+                <option value="suite">Suite</option>
+                <option value="junior suite">Junior Suite</option>
+                <option value="residential suite">Residential Suite</option>
+              </select>
+            </search>
+            <ul class="available-rooms-list">
+              <!-- <li>
+                <p id="availRoomType"></p>
+                <p id="availRoomNum"></p>
+                <p id="availRoomBed">
+                  <span id="availRoomBedNum"></span>
+                </p>
+                <p id="availRoomCost"></p>
+              </li> -->
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
 </html>
