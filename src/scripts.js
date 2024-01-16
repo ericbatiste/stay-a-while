@@ -80,8 +80,8 @@ function userRoomFilter() {
 function userNewBooking(e) {
   if (!currentUser) {
     promptUserLogin();
-  } else { 
-    const roomNum = Number(e.target.id.slice(3))
+  } else {
+    const roomNum = e.target.id;
     getAllData().then(data => {
       const selectedRoom = userSelectRoom(data[1].rooms, roomNum)
       postBooking(createNewBooking(currentUser, userDate, selectedRoom));

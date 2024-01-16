@@ -1,9 +1,4 @@
-import { 
-  userRoomSearch, 
-  userRoomFilter, 
-  verifyUserCreds, 
-  userNewBooking 
-} from './scripts';
+import { userRoomSearch, userRoomFilter, verifyUserCreds, userNewBooking } from './scripts';
 
 const loginModal = document.querySelector('#loginModal');
 const loginOverlay = document.querySelector('.overlay');
@@ -37,7 +32,9 @@ const returnToDashBtn = document.querySelector('#returnToDash');
 
 loginBtn.addEventListener('click', showUserLogin);
 closeLoginModalBtn.addEventListener('click', closeUserLogin);
-availRoomsList.addEventListener('click', userNewBooking);
+availRoomsList.addEventListener('click', e => {
+  userNewBooking(e);
+});
 returnToDashBtn.addEventListener('click', showUserDashboard);
 viewHistBtn.addEventListener('click', showUserHistory);
 viewUpcmgBtn.addEventListener('click', showUserUpcoming);
@@ -59,7 +56,7 @@ function renderUserBookings(date, room, element) {
       <p id="bookingDate">${date}</p>
       <p id="bookingRoomType">${roomType}<span id="bookingRoomNum"> number ${number}</span></p>
       <p id="bookingBeds">Beds: <span id="bookingBedNum">${numBeds} </span>${bedSize}</p>
-      <p id="bookingCost">$${costPerNight} / night</p>
+      <p id="bookingCost">$${costPerNight} per night</p>
     </li>`;
 }
 
@@ -76,13 +73,13 @@ function renderAvailRooms(date, room) {
     searchRoomsView();
     availRoomsHeading.innerText = `Avaliable rooms, ${date}`;
     availRoomsList.innerHTML += `
-    <li>
-    <p id="availRoomType">${roomType}</p>
-    <p id="availRoomNum">${number}</p>
-    <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
-    <p id="availRoomCost">$${costPerNight} / night</p>
-    <button id="btn${number}">Book now</button>
-    </li>`;
+      <li id="${number}">
+        <p id="availRoomType">${roomType}</p>
+        <p id="availRoomNum">${number}</p>
+        <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
+        <p id="availRoomCost">$${costPerNight} / night</p>
+        <button id="${number}">Book now</button>
+      </li>`;
   }
 }
 
@@ -169,6 +166,7 @@ function hide(element) {
 }
 
 export {
+  bookNowBtn,
   filterRoomType,
   promptUserLogin,
   renderAvailRooms,
