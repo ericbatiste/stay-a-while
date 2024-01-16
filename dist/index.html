@@ -20,6 +20,7 @@
         <h2 class="login-header-text">User Login</h2>
         <button class="close-modal-btn">x</button>
       </div>
+      <p class="login-prompt hidden">Please log in or create an account to continue.</p>
       <form class="login-inputs">
         <input type="text" id="username" placeholder="username" autocomplete="off" />
         <input type="text" id="password" placeholder="password" autocomplete="off" />
@@ -56,6 +57,10 @@
         </div>
 
         <div class="user-logged-in-container">
+          <div class="booking-success hidden">
+            <p class="success-msg"></p>
+            <button id="returnToDash">Confirm Booking</button>
+          </div>
           <article class="user-bookings-dashboard hidden">
             <nav class="bookings-nav">
               <h2>Your Bookings</h2>

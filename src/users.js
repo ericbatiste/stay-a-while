@@ -1,7 +1,3 @@
-export const setCurrentUser = (customers, id) => {
-  return customers.find(customer => customer.id === id);
-}
-
 export const filterRoomsByDate = (selectDate, bookings, rooms) => {
     const bookedRoomNums = bookings
       .filter(({ date }) => date === selectDate)

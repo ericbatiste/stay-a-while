@@ -1,4 +1,9 @@
-import { userRoomSearch, userRoomFilter, verifyUserCreds, userNewBooking } from './scripts';
+import { 
+  userRoomSearch, 
+  userRoomFilter, 
+  verifyUserCreds, 
+  userNewBooking 
+} from './scripts';
 
 const loginModal = document.querySelector('#loginModal');
 const loginOverlay = document.querySelector('.overlay');
@@ -15,30 +20,36 @@ const loginFailed = document.querySelector('.login-failed-text');
 const resetBtn = document.querySelector('.reset-btn');
 const totalCost = document.querySelector('.total-cost');
 const mockContentContainer = document.querySelector('.mock-content-container');
-const userDashboard = document.querySelector('.user-bookings-dashboard')
+const userDashboard = document.querySelector('.user-bookings-dashboard');
 const availRoomsContainer = document.querySelector('.available-rooms-container');
 const availRoomsHeading = document.querySelector('#availRoomsHeading');
 const availRoomsList = document.querySelector('.available-rooms-list');
 const bookNowBtn = document.querySelector('#bookNowBtn');
+const loginPrompt = document.querySelector('.login-prompt');
+const bookingSuccess = document.querySelector('.booking-success');
+const successMsg = document.querySelector('.success-msg');
+const returnToDashBtn = document.querySelector('#returnToDash');
 
-// window.addEventListener('load', () => {});
 loginBtn.addEventListener('click', showUserLogin);
 closeLoginModalBtn.addEventListener('click', closeUserLogin);
+searchRoomsBtn.addEventListener('click', userRoomSearch);
 submitLoginBtn.addEventListener('click', e => {
   userLoggedInView();
   userBookingsHist.innerHTML = '';
   verifyUserCreds(e, username.value, password.value);
 });
-searchRoomsBtn.addEventListener('click', () => {
-  userRoomSearch()
-});
 filterRoomType.addEventListener('change', () => {
   availRoomsList.innerHTML = '';
-  userRoomFilter()
+  userRoomFilter();
 });
-availRoomsList.addEventListener('click', (e) => {
-  userNewBooking(e)
-})
+availRoomsList.addEventListener('click', e => {
+  userNewBooking(e);
+});
+returnToDashBtn.addEventListener('click', e => {
+  userLoggedInView();
+  userBookingsHist.innerHTML = '';
+  verifyUserCreds(e, username.value, password.value);
+});
 
 function renderUserBookings(date, roomType, roomNumber, numBeds, bedSize, cost) {
   closeUserLogin();
@@ -52,7 +63,7 @@ function renderUserBookings(date, roomType, roomNumber, numBeds, bedSize, cost) 
 }
 
 function renderTotalCost(cost) {
-  totalCost.innerText = `Total spent: $${cost.toLocaleString()}`
+  totalCost.innerText = `Total spent: $${cost.toLocaleString()}`;
 }
 
 function renderAvailRooms(date, room) {
@@ -75,6 +86,7 @@ function renderLoginFailed() {
 }
 
 function showUserLogin() {
+  loginPrompt.classList.add('hidden');
   loginFailed.classList.add('hidden');
   resetBtn.classList.add('hidden');
   loginModal.classList.remove('hidden');
@@ -88,6 +100,7 @@ function closeUserLogin() {
 
 function userLoggedInView() {
   userDashboard.classList.remove('hidden');
+  bookingSuccess.classList.add('hidden');
   mockContentContainer.classList.add('hidden');
   availRoomsContainer.classList.add('hidden');
 }
@@ -98,11 +111,30 @@ function searchRoomsView() {
   availRoomsContainer.classList.remove('hidden');
 }
 
-export { 
+function promptUserLogin() {
+  showUserLogin();
+  loginPrompt.classList.remove('hidden');
+}
+
+function renderBookingSuccess(date) {
+  successMsg.innerText = `Looks like we'll be seeing you on ${date}!`;
+  bookingSuccessView();
+}
+
+function bookingSuccessView() {
+  userDashboard.classList.add('hidden');
+  mockContentContainer.classList.add('hidden');
+  availRoomsContainer.classList.add('hidden');
+  bookingSuccess.classList.remove('hidden');
+}
+
+export {
   filterRoomType,
-  renderAvailRooms, 
-  renderUserBookings, 
+  promptUserLogin,
+  renderAvailRooms,
+  renderBookingSuccess,
+  renderUserBookings,
   renderLoginFailed,
-  renderTotalCost, 
-  selectDate 
+  renderTotalCost,
+  selectDate
 };

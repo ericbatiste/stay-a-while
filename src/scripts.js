@@ -3,7 +3,9 @@ import './css/styles.css';
 import { getAllData, getUser, postBooking } from './apiCalls.js';
 import {
   filterRoomType,
+  promptUserLogin,
   renderAvailRooms,
+  renderBookingSuccess,
   renderLoginFailed,
   renderTotalCost,
   renderUserBookings,
@@ -68,6 +70,7 @@ function userRoomSearch() {
 }
 
 function userRoomFilter() {
+  userDate = selectDate.value.split('-').join('/');
   getAllData().then(data => {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
     const filtered = filterRoomsByType(filterRoomType.value, availableRooms);
@@ -78,11 +81,21 @@ function userRoomFilter() {
 }
 
 function userNewBooking(e) {
-  const roomNum = Number(e.target.id.slice(3))
-  getAllData().then(data => {
-    const selectedRoom = userSelectRoom(data[1].rooms, roomNum)
-    postBooking(createNewBooking(currentUser, userDate, selectedRoom));
-  })
+  if (!currentUser) {
+    promptUserLogin();
+  } else { 
+    const roomNum = Number(e.target.id.slice(3))
+    getAllData().then(data => {
+      const selectedRoom = userSelectRoom(data[1].rooms, roomNum)
+      postBooking(createNewBooking(currentUser, userDate, selectedRoom));
+      renderBookingSuccess(userDate);
+    })
+  }
 }
 
-export { verifyUserCreds, userRoomSearch, userRoomFilter, userNewBooking };
+export { 
+  verifyUserCreds, 
+  userRoomSearch, 
+  userRoomFilter, 
+  userNewBooking 
+};
