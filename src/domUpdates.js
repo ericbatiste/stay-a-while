@@ -77,7 +77,7 @@ function renderAvailRooms(date, room) {
         <p id="availRoomType">${roomType}</p>
         <p id="availRoomNum">${number}</p>
         <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
-        <p id="availRoomCost">$${costPerNight} / night</p>
+        <p id="availRoomCost">$${costPerNight} per night</p>
         <button class="book-now-btn" id="${number}">Book now</button>
       </li>`;
   }
