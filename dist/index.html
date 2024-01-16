@@ -34,8 +34,9 @@
     <main>
       <search class="search-availability">
         <h2 class="search-heading">Come join us!</h2>
+        <p class="select-date-prompt hidden">Please select a date.</p>
         <div class="select-dates-container">
-          <label for="start">Select date</label>
+          <label for="selectDate">Select date</label>
           <input type="date" id="selectDate" min="2015-01-01" max="2025-12-31" />
           <button class="search-btn" id="searchRoomsBtn">Search Rooms</button>
         </div>
@@ -66,29 +67,31 @@
               <h2>Your Bookings</h2>
               <ol class="bookings-nav-list">
                 <li class="booking-nav-btn">
-                  <a href="#">History</a>
+                  <a id="viewHist" href="#">History</a>
                 </li>
                 <li class="booking-nav-btn">
-                  <a href="#">Upcoming</a>
+                  <a id="viewUpcmg" href="#">Upcoming</a>
                 </li>
               </ol>
             </nav>
-            <ul class="booking-history">
-              <!-- <li class="booking-details">
-              <p id="bookingDate">2022/01/13</p>
-              <p id="bookingRoomType">Single Room
-                <span id="bookingRoomNum"> number 13</span>
-              </p>
-              <p id="bookingBeds">Beds:
-                <span id="bookingBedNum">1</span> king
-              </p>
-              <p id="bookingCost">$180.00 per night</p>
-            </li> -->
-            </ul>
-            <ul class="booking-upcoming">
-              <!-- <li>Booking 1</li>
-            <li>Booking 2</li> -->
-            </ul>
+            <div class="bookings-container">
+              <ul class="booking-history">
+                <!-- <li class="booking-details">
+                  <p id="bookingDate">2022/01/13</p>
+                  <p id="bookingRoomType">Single Room
+                    <span id="bookingRoomNum"> number 13</span>
+                  </p>
+                  <p id="bookingBeds">Beds:
+                    <span id="bookingBedNum">1</span> king
+                  </p>
+                  <p id="bookingCost">$180.00 per night</p>
+                </li> -->
+              </ul>
+              <ul class="booking-upcoming hidden">
+                <!-- <li>Booking 1</li>
+                  <li>Booking 2</li> -->
+              </ul>
+            </div>
             <div class="total-cost-container">
               <p class="total-cost"></p>
             </div>
