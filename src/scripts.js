@@ -67,7 +67,7 @@ function userRoomSearch() {
   getAllData().then(data => {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
     availableRooms.forEach(room => {
-      renderAvailRooms(userDate, room);
+      renderAvailRooms(userDate, room)
     });
   });
 }

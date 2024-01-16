@@ -65,7 +65,7 @@ function renderTotalCost(cost) {
 }
 
 function renderAvailRooms(date, room) {
-  if (!date) {
+  if (!date || new Date(date) <= new Date()) {
     promptUserSearch();
     setTimeout(() => promptUserSearch(), 1800);
   } else {
