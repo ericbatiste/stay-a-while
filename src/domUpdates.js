@@ -52,9 +52,9 @@ function renderUserBookings(date, room, element) {
   const { number, roomType, bedSize, numBeds, costPerNight } = room;
   closeUserLogin();
   element.innerHTML += `
-    <li class="booking-details">
+    <li class="booking-details" tabindex="0">
       <p id="bookingDate">${date}</p>
-      <p id="bookingRoomType">${roomType}<span id="bookingRoomNum"> number ${number}</span></p>
+      <p id="bookingRoomType">${roomType}:<span id="bookingRoomNum"> ${number}</span></p>
       <p id="bookingBeds">Beds: <span id="bookingBedNum">${numBeds} </span>${bedSize}</p>
       <p id="bookingCost">$${costPerNight} per night</p>
     </li>`;
@@ -71,14 +71,14 @@ function renderAvailRooms(date, room) {
   } else {
     const { number, roomType, bedSize, numBeds, costPerNight } = room;
     searchRoomsView();
-    availRoomsHeading.innerText = `Avaliable rooms, ${date}`;
+    availRoomsHeading.innerText = `Avaliable rooms - ${date}`;
     availRoomsList.innerHTML += `
-      <li id="${number}">
+      <li id="${number}" tabindex="0">
         <p id="availRoomType">${roomType}</p>
         <p id="availRoomNum">${number}</p>
         <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
         <p id="availRoomCost">$${costPerNight} / night</p>
-        <button id="${number}">Book now</button>
+        <button class="book-now-btn" id="${number}">Book now</button>
       </li>`;
   }
 }

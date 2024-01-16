@@ -5,16 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="bundle.js"></script>
-    <title>Stay A While</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>Overlook</title>
   </head>
   <body>
-    <header>
-      <div class="site-nav">
-        <button class="login-btn">Login</button>
-      </div>
-      <!-- <img src="./images/turing-logo.png" alt=""> -->
-    </header>
-
     <section class="modal hidden" id="loginModal">
       <div class="login-header">
         <h2 class="login-header-text">User Login</h2>
@@ -26,16 +22,23 @@
         <input type="text" id="username" placeholder="username" autocomplete="off" />
         <label for="password">Enter Password</label>
         <input type="text" id="password" placeholder="password" autocomplete="off" />
+        <input type="submit" class="submit-btn" id="submitLoginBtn" />
         <p class="login-failed-text hidden">*username or password is incorrect</p>
         <button class="reset-btn btn hidden">Reset password</button>
-        <button class="submit-btn btn" id="submitLoginBtn">Submit</button>
       </form>
     </section>
     <div class="overlay hidden"></div>
-
-    <main>
+    
+    <header>
+      <div class="site-nav">
+        <button class="login-btn">Login</button>
+      </div>
+      <div class="site-heading">
+        <h1>Stay a while...</h1>
+        <p>at <span>The Overlook</span></p>
+      </div>
       <search class="search-availability">
-        <h2 class="search-heading">Come join us!</h2>
+        <h2 class="search-heading">Come join us</h2>
         <p class="select-date-prompt hidden">Please select a date.</p>
         <div class="select-dates-container">
           <label for="selectDate">Select date</label>
@@ -43,29 +46,38 @@
           <button class="search-btn" id="searchRoomsBtn">Search Rooms</button>
         </div>
       </search>
-
+    </header>
+    
+    <main>
       <section class="main-content-container">
         <div class="mock-content-container">
-          <article class="homepage-mock-article" id="mock-article-1">
-            <img src="./images/turing-logo.png" alt="" />
-            <h3>Mock Article Headline</h3>
-            <p>Some text here about something that isn't real...</p>
+          <h2 class="mock-content-heading">Stay In the Loop</h2>
+          <article class="homepage-mock-article" id="mockArticle-1">
+            <img src="./images/gary-butterfield-market-unsplash.png" alt="Woman visiting outdoor market along waterfront." />
+            <h3>Indulge Local Flavors</h3>
+            <p>Savor seaside delights, relish coastal cuisine, and immerse in local flavors during your beach getaway for a truly indulgent and flavorful experience.</p>
           </article>
 
-          <article class="homepage-mock-article" id="mock-article-2">
-            <img src="./images/turing-logo.png" alt="" />
-            <h3>Mock Article Headline</h3>
-            <p>Some text here about something that isn't real...</p>
+          <article class="homepage-mock-article" id="mockArticle-2">
+            <img src="./images/marina-unsplash.png" alt="Beach view from inside natural rock arch." />
+            <h3>Get Out and Explore!</h3>
+            <p>Discover coastal wonders, hike sandy trails, and embrace the serenity of nature. Explore San Salvador Dali's natural beauty.</p>
+          </article>
+
+          <article class="homepage-mock-article" id="mockArticle-3">
+            <img src="./images/aleksandr-popov-nightlife-unsplash.png" alt="Small neon lit night club without too many people." />
+            <h3>Night Time is the Right Time</h3>
+            <p>Dive into vibrant nightlife by the shore, with beachfront parties, lively bars, and moonlit strolls, creating unforgettable moments after dark.</p>
           </article>
         </div>
 
         <div class="user-logged-in-container">
-          <div class="booking-success hidden">
-            <p class="success-msg"></p>
-            <button id="returnToDash">Confirm Booking</button>
-          </div>
+          <article class="booking-success hidden">
+              <p class="success-msg">See You Soon!</p>
+              <button class="booking-success-btn" id="returnToDash">Confirm Booking</button>
+          </article>
           <article class="user-bookings-dashboard hidden">
-            <h2>Your Bookings</h2>
+            <h2 id="userBookingsHeading">Your Bookings</h2>
             <nav class="bookings-nav">
               <ol class="bookings-nav-list">
                 <li class="booking-nav-btn">

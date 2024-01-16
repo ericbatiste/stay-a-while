@@ -1,4 +1,7 @@
-import './images/turing-logo.png';
+import './images/yuliya-pankevich-balcony-unsplash.png';
+import './images/gary-butterfield-market-unsplash.png';
+import './images/marina-unsplash.png';
+import './images/aleksandr-popov-nightlife-unsplash.png';
 import './css/styles.css';
 import { getAllData, getUser, postBooking } from './apiCalls.js';
 import {
