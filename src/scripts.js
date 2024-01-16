@@ -12,6 +12,7 @@ import {
   renderLoginFailed,
   renderTotalCost,
   renderUserBookings,
+  renderUserLoggedIn,
   selectDate,
   userBookingsHist,
   userBookingsUpcmg
@@ -51,10 +52,12 @@ function userLoggedIn(user) {
         if (booking.roomNumber === room.number) {
           new Date(booking.date) < new Date() ? 
           renderUserBookings(booking.date, room, userBookingsHist) :
-          renderUserBookings(booking.date, room, userBookingsUpcmg); 
+          renderUserBookings(booking.date, room, userBookingsUpcmg);
+          renderUserLoggedIn(user.name) 
         }
       });
     });
+    console.log(user);
     renderTotalCost(calcTotalCost(userBookings, data[1].rooms));
   });
 }

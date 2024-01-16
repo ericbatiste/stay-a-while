@@ -43,6 +43,11 @@ form > label {
   align-items: center;
   height: 70px;
   padding: 0 2rem;
+  gap: 20px;
+}
+
+.welcome {
+  font-weight: 600;
 }
 
 .site-heading {

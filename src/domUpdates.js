@@ -24,7 +24,7 @@ const userDashboard = document.querySelector('.user-bookings-dashboard');
 const availRoomsContainer = document.querySelector('.available-rooms-container');
 const availRoomsHeading = document.querySelector('#availRoomsHeading');
 const availRoomsList = document.querySelector('.available-rooms-list');
-// const bookNowBtn = document.querySelector('#bookNowBtn');
+const welcome = document.querySelector('.welcome');
 const loginPrompt = document.querySelector('.login-prompt');
 const bookingSuccess = document.querySelector('.booking-success');
 const successMsg = document.querySelector('.success-msg');
@@ -81,6 +81,13 @@ function renderAvailRooms(date, room) {
         <button class="book-now-btn" id="${number}">Book now</button>
       </li>`;
   }
+}
+
+function renderUserLoggedIn(name) {
+  let firstName = name.split(' ')[0]
+  loginBtn.innerText = 'Sign Out';
+  welcome.innerText = `Welcome back ${firstName}!`
+  show(welcome);
 }
 
 function renderBookingSuccess(date) {
@@ -171,6 +178,7 @@ export {
   renderAvailRooms,
   renderBookingSuccess,
   renderUserBookings,
+  renderUserLoggedIn,
   renderLoginFailed,
   renderTotalCost,
   selectDate,
