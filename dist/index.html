@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="bundle.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
     <title>Overlook</title>
   </head>
   <body>
@@ -28,7 +31,7 @@
       </form>
     </section>
     <div class="overlay hidden"></div>
-    
+
     <header>
       <div class="site-nav">
         <p class="welcome hidden">Welcome Eric</p>
@@ -48,34 +51,52 @@
         </div>
       </search>
     </header>
-    
+
     <main>
       <section class="main-content-container">
         <div class="mock-content-container">
           <h2 class="mock-content-heading">Stay In the Loop</h2>
           <article class="homepage-mock-article" id="mockArticle-1">
-            <img src="./images/gary-butterfield-market-unsplash.png" alt="Woman visiting outdoor market along waterfront." />
+            <img
+              src="./images/gary-butterfield-market-unsplash.png"
+              alt="Woman visiting outdoor market along waterfront."
+            />
             <h3>Indulge Local Flavors</h3>
-            <p>Savor seaside delights, relish coastal cuisine, and immerse in local flavors during your beach getaway for a truly indulgent and flavorful experience.</p>
+            <p>
+              Savor seaside delights, relish coastal cuisine, and immerse in local flavors during
+              your beach getaway for a truly indulgent and flavorful experience.
+            </p>
           </article>
 
           <article class="homepage-mock-article" id="mockArticle-2">
-            <img src="./images/marina-unsplash.png" alt="Beach view from inside natural rock arch." />
+            <img
+              src="./images/marina-unsplash.png"
+              alt="Beach view from inside natural rock arch."
+            />
             <h3>Get Out and Explore!</h3>
-            <p>Discover coastal wonders, hike sandy trails, and embrace the serenity of nature. Explore San Salvador Dali's natural beauty.</p>
+            <p>
+              Discover coastal wonders, hike sandy trails, and embrace the serenity of nature.
+              Explore San Salvador Dali's natural beauty.
+            </p>
           </article>
 
           <article class="homepage-mock-article" id="mockArticle-3">
-            <img src="./images/aleksandr-popov-nightlife-unsplash.png" alt="Small neon lit night club without too many people." />
+            <img
+              src="./images/aleksandr-popov-nightlife-unsplash.png"
+              alt="Small neon lit night club without too many people."
+            />
             <h3>Night Time is the Right Time</h3>
-            <p>Dive into vibrant nightlife by the shore, with beachfront parties, lively bars, and moonlit strolls, creating unforgettable moments after dark.</p>
+            <p>
+              Dive into vibrant nightlife by the shore, with beachfront parties, lively bars, and
+              moonlit strolls, creating unforgettable moments after dark.
+            </p>
           </article>
         </div>
 
         <div class="user-logged-in-container">
           <article class="booking-success hidden">
-              <p class="success-msg">See You Soon!</p>
-              <button class="booking-success-btn" id="returnToDash">Confirm Booking</button>
+            <p class="success-msg">See You Soon!</p>
+            <button class="booking-success-btn" id="returnToDash">Confirm Booking</button>
           </article>
           <article class="user-bookings-dashboard hidden">
             <h2 id="userBookingsHeading">Your Bookings</h2>
@@ -90,22 +111,8 @@
               </ol>
             </nav>
             <div class="bookings-container">
-              <ul class="booking-history">
-                <!-- <li class="booking-details">
-                  <p id="bookingDate">2022/01/13</p>
-                  <p id="bookingRoomType">Single Room
-                    <span id="bookingRoomNum"> number 13</span>
-                  </p>
-                  <p id="bookingBeds">Beds:
-                    <span id="bookingBedNum">1</span> king
-                  </p>
-                  <p id="bookingCost">$180.00 per night</p>
-                </li> -->
-              </ul>
-              <ul class="booking-upcoming hidden">
-                <!-- <li>Booking 1</li>
-                  <li>Booking 2</li> -->
-              </ul>
+              <ul class="booking-history"></ul>
+              <ul class="booking-upcoming hidden"></ul>
             </div>
             <div class="total-cost-container">
               <p class="total-cost"></p>
@@ -124,16 +131,7 @@
                 <option value="residential suite">Residential Suite</option>
               </select>
             </search>
-            <ul class="available-rooms-list">
-              <!-- <li>
-                <p id="availRoomType"></p>
-                <p id="availRoomNum"></p>
-                <p id="availRoomBed">
-                  <span id="availRoomBedNum"></span>
-                </p>
-                <p id="availRoomCost"></p>
-              </li> -->
-            </ul>
+            <ul class="available-rooms-list"></ul>
           </article>
         </div>
       </section>

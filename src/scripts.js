@@ -7,6 +7,7 @@ import { getAllData, getUser, postBooking } from './apiCalls.js';
 import {
   filterRoomType,
   promptUserLogin,
+  renderAppology,
   renderAvailRooms,
   renderBookingSuccess,
   renderLoginFailed,
@@ -66,9 +67,13 @@ function userRoomSearch() {
   userDate = selectDate.value.split('-').join('/');
   getAllData().then(data => {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
-    availableRooms.forEach(room => {
-      renderAvailRooms(userDate, room)
-    });
+    if (availableRooms.length === 0) {
+      renderAppology(date)
+    } else {
+      availableRooms.forEach(room => {
+        renderAvailRooms(userDate, room)
+      });
+    }
   });
 }
 
