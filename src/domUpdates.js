@@ -28,12 +28,15 @@ const welcome = document.querySelector('.welcome');
 const loginPrompt = document.querySelector('.login-prompt');
 const bookingSuccess = document.querySelector('.booking-success');
 const successMsg = document.querySelector('.success-msg');
+const apology = document.querySelector('.fierce-apology');
 const returnToDashBtn = document.querySelector('#returnToDash');
+const returnToDashBtn2 = document.querySelector('#returnToDash2');
 
 loginBtn.addEventListener('click', showUserLogin);
 closeLoginModalBtn.addEventListener('click', closeUserLogin);
 availRoomsList.addEventListener('click', userNewBooking);
 returnToDashBtn.addEventListener('click', showUserDashboard);
+returnToDashBtn2.addEventListener('click', showUserDashboard);
 viewHistBtn.addEventListener('click', showUserHistory);
 viewUpcmgBtn.addEventListener('click', showUserUpcoming);
 submitLoginBtn.addEventListener('click', showUserDashboard);
@@ -88,16 +91,20 @@ function renderUserLoggedIn(name) {
   show(welcome);
 }
 
-function renderAppology(date) {
-  availRoomsList.innerHTML = `Please accept our sincere appology, there are no available rooms on ${date}. If possible, try adjusting your search.`;
-}
-
 function renderBookingSuccess(date) {
   successMsg.innerText = `Looks like we'll be seeing you on ${date}!`;
   bookingSuccessView();
 }
 
+function renderApology() {
+  show(apology);
+  hide(userDashboard);
+  hide(mockContentContainer);
+  hide(availRoomsContainer);
+}
+
 function showUserDashboard(e) {
+  hide(apology);
   userLoggedInView();
   clearBookingElement();
   verifyUserCreds(e, username.value, password.value);
@@ -177,7 +184,7 @@ function hide(element) {
 export {
   filterRoomType,
   promptUserLogin,
-  renderAppology,
+  renderApology,
   renderAvailRooms,
   renderBookingSuccess,
   renderUserBookings,
