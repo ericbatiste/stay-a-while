@@ -32,9 +32,7 @@ const returnToDashBtn = document.querySelector('#returnToDash');
 
 loginBtn.addEventListener('click', showUserLogin);
 closeLoginModalBtn.addEventListener('click', closeUserLogin);
-availRoomsList.addEventListener('click', e => {
-  userNewBooking(e);
-});
+availRoomsList.addEventListener('click', userNewBooking);
 returnToDashBtn.addEventListener('click', showUserDashboard);
 viewHistBtn.addEventListener('click', showUserHistory);
 viewUpcmgBtn.addEventListener('click', showUserUpcoming);
@@ -84,10 +82,14 @@ function renderAvailRooms(date, room) {
 }
 
 function renderUserLoggedIn(name) {
-  let firstName = name.split(' ')[0]
+  let firstName = name.split(' ')[0];
   loginBtn.innerText = 'Sign Out';
-  welcome.innerText = `Welcome back ${firstName}!`
+  welcome.innerText = `Welcome back ${firstName}!`;
   show(welcome);
+}
+
+function renderAppology(date) {
+  availRoomsList.innerHTML = `Please accept our sincere appology, there are no available rooms on ${date}. If possible, try adjusting your search.`;
 }
 
 function renderBookingSuccess(date) {
@@ -175,6 +177,7 @@ function hide(element) {
 export {
   filterRoomType,
   promptUserLogin,
+  renderAppology,
   renderAvailRooms,
   renderBookingSuccess,
   renderUserBookings,
