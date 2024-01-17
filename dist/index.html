@@ -47,7 +47,9 @@
         <div class="select-dates-container">
           <label for="selectDate">Select date</label>
           <input type="date" id="selectDate" min="2015-01-01" max="2025-12-31" />
-          <button aria-label="search rooms by date" class="search-btn" id="searchRoomsBtn">Search Rooms</button>
+          <button aria-label="search rooms by date" class="search-btn" id="searchRoomsBtn">
+            Search Rooms
+          </button>
         </div>
       </search>
     </header>
@@ -96,8 +98,28 @@
         <div class="user-logged-in-container">
           <article class="booking-success hidden">
             <p class="success-msg">See You Soon!</p>
-            <button class="booking-success-btn" id="returnToDash">Confirm Booking</button>
+            <button
+              aria-label="return to booking dashboard"
+              class="booking-success-btn"
+              id="returnToDash"
+            >
+              Confirm Booking
+            </button>
           </article>
+          <article class="fierce-apology hidden">
+            <p class="apology-msg">
+              Please accept our sincere apology, it seems we are all booked up for that date! 
+              If possible, try adjusting your search.
+            </p>
+            <button
+              aria-label="return to booking dashboard"
+              class="fierce-apology-btn"
+              id="returnToDash2"
+            >
+              Return to dashboard
+            </button>
+          </article>
+
           <article class="user-bookings-dashboard hidden">
             <h2 id="userBookingsHeading">Your Bookings</h2>
             <nav class="bookings-nav">
@@ -123,7 +145,11 @@
             <h2 id="availRoomsHeading">Available Rooms</h2>
             <search class="view-available-rooms">
               <label for="selectRoomType">Filter rooms:</label>
-              <select aria-label="Filter by room type drop down selector menu" name="roomType" id="selectRoomType">
+              <select
+                aria-label="Filter by room type drop down selector menu"
+                name="roomType"
+                id="selectRoomType"
+              >
                 <option value="">--Room Type--</option>
                 <option value="single room">Single Room</option>
                 <option value="suite">Suite</option>
