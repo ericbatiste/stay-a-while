@@ -1,4 +1,7 @@
-import './images/turing-logo.png';
+import './images/yuliya-pankevich-balcony-unsplash.png';
+import './images/gary-butterfield-market-unsplash.png';
+import './images/marina-unsplash.png';
+import './images/aleksandr-popov-nightlife-unsplash.png';
 import './css/styles.css';
 import { getAllData, getUser, postBooking } from './apiCalls.js';
 import {
@@ -9,6 +12,7 @@ import {
   renderLoginFailed,
   renderTotalCost,
   renderUserBookings,
+  renderUserLoggedIn,
   selectDate,
   userBookingsHist,
   userBookingsUpcmg
@@ -48,10 +52,12 @@ function userLoggedIn(user) {
         if (booking.roomNumber === room.number) {
           new Date(booking.date) < new Date() ? 
           renderUserBookings(booking.date, room, userBookingsHist) :
-          renderUserBookings(booking.date, room, userBookingsUpcmg); 
+          renderUserBookings(booking.date, room, userBookingsUpcmg);
+          renderUserLoggedIn(user.name) 
         }
       });
     });
+    console.log(user);
     renderTotalCost(calcTotalCost(userBookings, data[1].rooms));
   });
 }
@@ -61,7 +67,7 @@ function userRoomSearch() {
   getAllData().then(data => {
     const availableRooms = filterRoomsByDate(userDate, data[2].bookings, data[1].rooms);
     availableRooms.forEach(room => {
-      renderAvailRooms(userDate, room);
+      renderAvailRooms(userDate, room)
     });
   });
 }

@@ -1,3 +1,7 @@
+:root {
+  font-family: "Ubuntu", sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,56 +14,149 @@ body {
 }
 
 header {
-  height: 500px;
-  background-image: '';
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 550px;
+  background-image: url("../images/yuliya-pankevich-balcony-unsplash.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0px 50%;
   background-color: rgb(96, 197, 204);
 }
 
+label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-style: oblique;
+}
+
+form > label {
+  font-weight: 100;
+}
+
 .site-nav {
-  background: black;
-  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.529);
+  border-bottom: 1px solid rgba(3, 120, 138, 0.309);
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 70px;
   padding: 0 2rem;
+  gap: 20px;
+}
+
+.welcome {
+  font-weight: 600;
+}
+
+.site-heading {
+  padding: 6rem 0 0 2rem;
+}
+
+h1 {
+  font-size: 6rem;
+  font-weight: 400;
+  font-style: italic;
+  color: white;
+}
+
+.site-heading > p {
+  padding-left: 28%;
+}
+
+.site-heading > p > span {
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
 .search-availability {
-  border: 1px solid black;
+  border-top: 1px solid rgba(3, 120, 138, 0.309);
+  background-color: rgba(255, 255, 255, 0.529);
   display: flex;
   height: 100px;
   justify-content: center;
   align-items: center;
-  gap: 15%;
+  gap: 7%;
+}
+
+#selectDate {
+  border: none;
+  justify-content: space-between;
+  cursor: pointer;
+  border-bottom: 2px solid black;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.204);
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .search-btn {
   margin-left: 20px;
 }
 
-.main-content-container {
-  padding: 50px;
-}
-
 .mock-content-container {
-  display: flex;
-  justify-content: space-around;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: .25fr 1fr 1fr 1fr;
+  grid-template-areas: 
+    'heading heading'
+    'art1       ....'
+    '....       art2'
+    'art3       ....'
+  ;
+  padding: 0 20px;
 }
 
-.homepage-mock-article img {
-  height: 300px;
+.mock-content-heading {
+  grid-area: heading;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 400;
+  padding: 80px;
+}
+
+#mockArticle-1{
+  grid-area: art1;
+  /* border-radius: 20px; */
+  width: 600px;
+  /* box-shadow: -2px -2px 0px 0px black; */
+  overflow: hidden;
+}
+
+#mockArticle-2{
+  grid-area: art2;
+}
+
+#mockArticle-3{
+  grid-area: art3;
+}
+
+.book-now-btn {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+search > h2,
+search > p {
+  font-size: 2rem;
+}
+
+#userBookingsHeading,
+#availRoomsHeading {
+  font-size: 2rem;
+  padding-left: 10%;
 }
 
 .user-bookings-dashboard,
 .available-rooms-container {
-  padding: 20px;
+  padding: 80px;
 }
 
 .bookings-nav,
 .view-available-rooms {
-  padding: 0px 60px 50px 60px;
+  padding: 20px 60px 20px 60px;
 }
 
 .bookings-nav,
@@ -71,6 +168,36 @@ header {
   gap: 1rem;
 }
 
+#selectRoomType {
+  padding: .4rem;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+ol > li {
+  border: none;
+  box-shadow: none;
+  margin-bottom: none;
+  border-bottom: 2px solid white;
+  height: auto;
+  padding-bottom: .2rem;
+  transition: border-bottom 80ms ease-in;
+}
+
+ol > li:hover {
+  border-bottom: 2px solid black;
+}
+
+#viewHist, 
+#viewUpcmg {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
 .bookings-nav-list {
   gap: 40px;
 }
@@ -78,17 +205,62 @@ header {
 li {
   display: flex;
   justify-content: space-around;
-  border-bottom: 1px solid black;
-  margin-bottom: 5px;
+  align-items: center;
+  border: 1px solid rgb(158, 158, 158);
+  border-radius: 2px;
+  box-shadow: 0 0 2px 0px rgb(109, 109, 109);
+  margin-bottom: 10px;
+  height: 50px;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+li:hover {
+  transform: scale(1.008);
+}
+
+.login-btn,
+.search-btn,
+.book-now-btn,
+.booking-success-btn,
+.close-modal-btn,
+.reset-btn,
+.submit-btn {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.booking-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  gap: 20px;
+}
+
+.booking-success > p {
+  font-size: 2rem;
 }
 
 .total-cost-container {
   display: flex;
   justify-content: flex-end;
+  padding: 1rem;
+}
+
+.total-cost-container > p {
+  font-weight: 600;
+  font-size: 1.2rem
 }
 
 footer {
-  border-top: 1px solid black;
+  background: rgb(20, 37, 40);
   height: 160px;
 }
 
@@ -134,9 +306,15 @@ footer {
   font-size: 0.9em;
 }
 
+.close-modal-btn {
+  background-color: white;
+  color: black;
+  font-size: 1.5rem;
+  
+}
+
 .submit-btn {
-  margin-top: 1rem;
-  width: 28%;
+  margin-top: 1.8rem;
 }
 
 .overlay {

@@ -24,7 +24,7 @@ const userDashboard = document.querySelector('.user-bookings-dashboard');
 const availRoomsContainer = document.querySelector('.available-rooms-container');
 const availRoomsHeading = document.querySelector('#availRoomsHeading');
 const availRoomsList = document.querySelector('.available-rooms-list');
-// const bookNowBtn = document.querySelector('#bookNowBtn');
+const welcome = document.querySelector('.welcome');
 const loginPrompt = document.querySelector('.login-prompt');
 const bookingSuccess = document.querySelector('.booking-success');
 const successMsg = document.querySelector('.success-msg');
@@ -52,9 +52,9 @@ function renderUserBookings(date, room, element) {
   const { number, roomType, bedSize, numBeds, costPerNight } = room;
   closeUserLogin();
   element.innerHTML += `
-    <li class="booking-details">
+    <li class="booking-details" tabindex="0">
       <p id="bookingDate">${date}</p>
-      <p id="bookingRoomType">${roomType}<span id="bookingRoomNum"> number ${number}</span></p>
+      <p id="bookingRoomType">${roomType}:<span id="bookingRoomNum"> ${number}</span></p>
       <p id="bookingBeds">Beds: <span id="bookingBedNum">${numBeds} </span>${bedSize}</p>
       <p id="bookingCost">$${costPerNight} per night</p>
     </li>`;
@@ -65,22 +65,29 @@ function renderTotalCost(cost) {
 }
 
 function renderAvailRooms(date, room) {
-  if (!date) {
+  if (!date || new Date(date) <= new Date()) {
     promptUserSearch();
     setTimeout(() => promptUserSearch(), 1800);
   } else {
     const { number, roomType, bedSize, numBeds, costPerNight } = room;
     searchRoomsView();
-    availRoomsHeading.innerText = `Avaliable rooms, ${date}`;
+    availRoomsHeading.innerText = `Avaliable rooms - ${date}`;
     availRoomsList.innerHTML += `
-      <li id="${number}">
+      <li id="${number}" tabindex="0">
         <p id="availRoomType">${roomType}</p>
         <p id="availRoomNum">${number}</p>
         <p id="availRoomBed">Beds: <span id="availRoomBedNum">${numBeds} </span>${bedSize}</p>
-        <p id="availRoomCost">$${costPerNight} / night</p>
-        <button id="${number}">Book now</button>
+        <p id="availRoomCost">$${costPerNight} per night</p>
+        <button class="book-now-btn" id="${number}">Book now</button>
       </li>`;
   }
+}
+
+function renderUserLoggedIn(name) {
+  let firstName = name.split(' ')[0]
+  loginBtn.innerText = 'Sign Out';
+  welcome.innerText = `Welcome back ${firstName}!`
+  show(welcome);
 }
 
 function renderBookingSuccess(date) {
@@ -171,6 +178,7 @@ export {
   renderAvailRooms,
   renderBookingSuccess,
   renderUserBookings,
+  renderUserLoggedIn,
   renderLoginFailed,
   renderTotalCost,
   selectDate,
