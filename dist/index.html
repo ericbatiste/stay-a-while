@@ -27,7 +27,7 @@
         <input type="password" id="password" placeholder="password" autocomplete="off" />
         <input type="submit" class="submit-btn" id="submitLoginBtn" />
         <p class="login-failed-text hidden">*username or password is incorrect</p>
-        <button class="reset-btn btn hidden">Reset password</button>
+        <button aria-label="reset password" class="reset-btn hidden">Reset password</button>
       </form>
     </section>
     <div class="overlay hidden"></div>
@@ -35,7 +35,7 @@
     <header>
       <div class="site-nav">
         <p class="welcome hidden">Welcome Eric</p>
-        <button class="login-btn">Login</button>
+        <button aria-label="User sign in" class="login-btn">Login</button>
       </div>
       <div class="site-heading">
         <h1>Stay a while...</h1>
@@ -47,7 +47,7 @@
         <div class="select-dates-container">
           <label for="selectDate">Select date</label>
           <input type="date" id="selectDate" min="2015-01-01" max="2025-12-31" />
-          <button class="search-btn" id="searchRoomsBtn">Search Rooms</button>
+          <button aria-label="search rooms by date" class="search-btn" id="searchRoomsBtn">Search Rooms</button>
         </div>
       </search>
     </header>
@@ -123,7 +123,7 @@
             <h2 id="availRoomsHeading">Available Rooms</h2>
             <search class="view-available-rooms">
               <label for="selectRoomType">Filter rooms:</label>
-              <select name="roomType" id="selectRoomType">
+              <select aria-label="Filter by room type drop down selector menu" name="roomType" id="selectRoomType">
                 <option value="">--Room Type--</option>
                 <option value="single room">Single Room</option>
                 <option value="suite">Suite</option>
